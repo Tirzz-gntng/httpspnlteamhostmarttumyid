@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 Report Scam Telegram</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        body {
+            background: #0a0a0a;
+            background-image: radial-gradient(circle at 20% 20%, #1a0a0a, #000 90%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+        }
+        .container {
+            max-width: 580px;
+            width: 100%;
+            background: #121212;
+            border-radius: 24px;
+            padding: 28px 24px 32px;
+            border: 2px solid #cc2222;
+            box-shadow: 0 0 60px rgba(255,0,0,0.08);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 22px;
+            border-bottom: 2px solid #2a2a2a;
+            padding-bottom: 16px;
+        }
+        .header h1 {
+            color: #ff3333;
+            font-size: 26px;
+            text-shadow: 0 0 30px rgba(255,0,0,0.2);
+        }
+        .header .sub {
+            color: #ffaa44;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+        .header p {
+            color: #888;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .tabs button {
+            flex: 1;
+            padding: 12px;
+            background: #1a1a2a;
+            border: 2px solid #333;
+            border-radius: 12px;
+            color: #aaa;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+        .tabs button.active {
+            background: #880000;
+            border-color: #ff4444;
+            color: #fff;
+        }
+        .tabs button:hover {
+            background: #2a0a0a;
+        }
+        .panel {
+            display: none;
+            animation: fadeUp 0.3s ease;
+        }
+        .panel.active {
+            display: block;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            display: block;
+            color: #ff8888;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            background: #1a0a0a;
+            border: 2px solid #2a2a2a;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+        .form-group input:focus {
+            border-color: #ff2222;
+            box-shadow: 0 0 20px rgba(255,0,0,0.05);
+        }
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: #1a0a0a;
+            border: 2px solid #2a2a2a;
+            border-radius: 12px;
+            color: #0f0;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+            resize: vertical;
+            min-height: 200px;
+            font-family: monospace;
+            line-height: 1.8;
+        }
+        .form-group textarea:focus {
+            border-color: #ff2222;
+            box-shadow: 0 0 20px rgba(255,0,0,0.05);
+        }
+        .btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #cc2222, #880000);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border-bottom: 4px solid #440000;
+            transition: 0.1s;
+        }
+        .btn:active {
+            transform: scale(0.97);
+            border-bottom-width: 2px;
+        }
+        .btn-secondary {
+            background: #1a1a2a;
+            border-color: #333;
+        }
+        .btn-success {
+            background: #006600;
+            border-color: #003300;
+        }
+        .log-box {
+            background: #0a0505;
+            border-left: 4px solid #ff2222;
+            padding: 14px;
+            max-height: 140px;
+            overflow-y: auto;
+            font-size: 13px;
+            color: #b0b0b0;
+            border-radius: 8px;
+            border: 1px solid #2a0a0a;
+            margin-top: 14px;
+            font-family: monospace;
+        }
+        .log-box .success { color: #00ff88; }
+        .log-box .error { color: #ff4444; }
+        .log-box .info { color: #44aaff; }
+        .log-box .warn { color: #ffaa00; }
+        .log-box .highlight { color: #ffaa44; font-weight: bold; }
+        .footer {
+            margin-top: 16px;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 12px;
+            text-align: center;
+            color: #555;
+            font-size: 11px;
+        }
+        .footer span { color: #880000; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #111; }
+        ::-webkit-scrollbar-thumb { background: #880000; border-radius: 10px; }
+        .badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-left: 6px;
+        }
+        .badge-scam { background: #ff0044; color: #fff; }
+        .badge-fake { background: #ff8800; color: #fff; }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .btn-group .btn {
+            flex: 1;
+            padding: 12px;
+            font-size: 14px;
+        }
+        .copy-btn {
+            background: #1a1a2a;
+            border: 1px solid #444;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: 0.2s;
+            margin-top: 8px;
+        }
+        .copy-btn:hover {
+            background: #2a2a4a;
+        }
+        .email-info {
+            background: #0a0a1a;
+            border: 1px solid #2a2a4a;
+            border-radius: 10px;
+            padding: 12px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .email-info .label {
+            color: #4488ff;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .email-info .email {
+            color: #66aaff;
+            font-size: 18px;
+            font-weight: 900;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>🚨 REPORT SCAM</h1>
+        <div class="sub">Telegram — Scam / Fake Report</div>
+        <p>Lapor akun Telegram scam/penipuan atau fake/palsu</p>
+    </div>
+
+    <div class="tabs">
+        <button class="active" onclick="switchTab('scam')">🚨 SCAM</button>
+        <button onclick="switchTab('fake')">🎭 FAKE</button>
+    </div>
+
+    <!-- PANEL SCAM -->
+    <div id="panelScam" class="panel active">
+        <div class="email-info">
+            <div class="label">📧 EMAIL TELEGRAM</div>
+            <div class="email">abuse@telegram.org</div>
+        </div>
+
+        <div class="form-group">
+            <label>👤 USERNAME AKUN (format: @username)</label>
+            <input type="text" id="scamUser" placeholder="@akunscam" value="@akunscam">
+        </div>
+
+        <div class="form-group">
+            <label>📝 TEKS LAPORAN (SCAM/PENIPUAN)</label>
+            <textarea id="scamText" readonly>Selamat Siang Team Telegram,
+
+Saya ingin melaporkan account telegram ini dan saya Mohon untuk team telegram, beri account telegram ini label scam/penipuan karena account ini palsu, mohon untuk beri label scam/penipuan untuk memberi tanda bahwa account ini scam/penipuan
+
+Saya Akbar
+Terimakasih</textarea>
+        </div>
+
+        <div class="form-group">
+            <label>📧 HASIL AKHIR (COPY & KIRIM KE EMAIL)</label>
+            <textarea id="scamResult" readonly style="min-height:180px; color:#00ff88;"></textarea>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-success" onclick="copyResult('scamResult')">📋 COPY</button>
+            <button class="btn" onclick="sendEmail()">📧 BUKA EMAIL</button>
+        </div>
+
+        <div class="log-box" id="scamLog">
+            <div class="info">📌 Masukkan @username, hasil laporan otomatis tergenerate.</div>
+        </div>
+    </div>
+
+    <!-- PANEL FAKE -->
+    <div id="panelFake" class="panel">
+        <div class="email-info">
+            <div class="label">📧 EMAIL TELEGRAM</div>
+            <div class="email">abuse@telegram.org</div>
+        </div>
+
+        <div class="form-group">
+            <label>👤 USERNAME AKUN (format: @username)</label>
+            <input type="text" id="fakeUser" placeholder="@akunfake" value="@akunfake">
+        </div>
+
+        <div class="form-group">
+            <label>📝 TEKS LAPORAN (FAKE/PALSU)</label>
+            <textarea id="fakeText" readonly>Selamat Siang Team Telegram,
+
+Saya ingin melaporkan account telegram ini dan saya Mohon untuk team telegram, beri account telegram ini label fake/palsu karena account ini palsu, mohon untuk beri label fake/palsu untuk memberi tanda bahwa account ini palsu/fake
+
+Saya Akbar
+Terimakasih</textarea>
+        </div>
+
+        <div class="form-group">
+            <label>📧 HASIL AKHIR (COPY & KIRIM KE EMAIL)</label>
+            <textarea id="fakeResult" readonly style="min-height:180px; color:#00ff88;"></textarea>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-success" onclick="copyResult('fakeResult')">📋 COPY</button>
+            <button class="btn" onclick="sendEmail()">📧 BUKA EMAIL</button>
+        </div>
+
+        <div class="log-box" id="fakeLog">
+            <div class="info">📌 Masukkan @username, hasil laporan otomatis tergenerate.</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>☠️ AGAMNESIA — REPORT SCAM TELEGRAM</span>
+    </div>
+</div>
+
+<script>
+    // ============================================================
+    // ELEMEN
+    // ============================================================
+    const scamUser = document.getElementById('scamUser');
+    const scamText = document.getElementById('scamText');
+    const scamResult = document.getElementById('scamResult');
+    const scamLog = document.getElementById('scamLog');
+
+    const fakeUser = document.getElementById('fakeUser');
+    const fakeText = document.getElementById('fakeText');
+    const fakeResult = document.getElementById('fakeResult');
+    const fakeLog = document.getElementById('fakeLog');
+
+    // ============================================================
+    // FUNGSI LOG
+    // ============================================================
+    function logMessage(el, msg, cls = '') {
+        const div = document.createElement('div');
+        if (cls) div.className = cls;
+        div.textContent = msg;
+        el.appendChild(div);
+        el.scrollTop = el.scrollHeight;
+    }
+
+    function clearLog(el) {
+        el.innerHTML = '';
+    }
+
+    // ============================================================
+    // TAB SWITCH
+    // ============================================================
+    function switchTab(tab) {
+        document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+
+        if (tab === 'scam') {
+            document.querySelector('.tabs button:first-child').classList.add('active');
+            document.getElementById('panelScam').classList.add('active');
+        } else {
+            document.querySelector('.tabs button:last-child').classList.add('active');
+            document.getElementById('panelFake').classList.add('active');
+        }
+    }
+
+    // ============================================================
+    // GENERATE RESULT SCAM
+    // ============================================================
+    function generateScam() {
+        const user = scamUser.value.trim() || '@akunscam';
+        const text = scamText.value;
+
+        // Ganti @username di teks
+        let result = text.replace(/account ini/g, 'account ' + user);
+        result = result.replace(/akun ini/g, 'akun ' + user);
+
+        // Tambahkan email subject dan body
+        const final = `To: abuse@telegram.org
+Subject: LAPORAN SCAM/PENIPUAN — ${user}
+
+${result}`;
+
+        scamResult.value = final;
+        clearLog(scamLog);
+        logMessage(scamLog, '✅ Laporan scam siap untuk ' + user, 'success');
+        logMessage(scamLog, '📌 Copy dan kirim ke abuse@telegram.org', 'info');
+    }
+
+    // ============================================================
+    // GENERATE RESULT FAKE
+    // ============================================================
+    function generateFake() {
+        const user = fakeUser.value.trim() || '@akunfake';
+        const text = fakeText.value;
+
+        let result = text.replace(/account ini/g, 'account ' + user);
+        result = result.replace(/akun ini/g, 'akun ' + user);
+
+        const final = `To: abuse@telegram.org
+Subject: LAPORAN FAKE/PALSU — ${user}
+
+${result}`;
+
+        fakeResult.value = final;
+        clearLog(fakeLog);
+        logMessage(fakeLog, '✅ Laporan fake siap untuk ' + user, 'success');
+        logMessage(fakeLog, '📌 Copy dan kirim ke abuse@telegram.org', 'info');
+    }
+
+    // ============================================================
+    // EVENT LISTENER — AUTO GENERATE
+    // ============================================================
+    scamUser.addEventListener('input', generateScam);
+    fakeUser.addEventListener('input', generateFake);
+
+    // ============================================================
+    // COPY RESULT
+    // ============================================================
+    function copyResult(id) {
+        const el = document.getElementById(id);
+        const text = el.value;
+
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = event.target;
+            const orig = btn.textContent;
+            btn.textContent = '✅ COPED!';
+            setTimeout(() => btn.textContent = orig, 1500);
+        }).catch(() => {
+            el.select();
+            document.execCommand('copy');
+            alert('📋 Copied!');
+        });
+    }
+
+    // ============================================================
+    // SEND EMAIL (BUKA EMAIL CLIENT)
+    // ============================================================
+    function sendEmail() {
+        // Cari tab aktif
+        const scamPanel = document.getElementById('panelScam');
+        const fakePanel = document.getElementById('panelFake');
+
+        let subject = '';
+        let body = '';
+
+        if (scamPanel.classList.contains('active')) {
+            subject = 'LAPORAN SCAM/PENIPUAN — ' + scamUser.value.trim();
+            body = scamResult.value;
+        } else {
+            subject = 'LAPORAN FAKE/PALSU — ' + fakeUser.value.trim();
+            body = fakeResult.value;
+        }
+
+        // Bersihkan body untuk email (hapus "To:" dan "Subject:")
+        const cleanBody = body.replace(/^To:.*?\nSubject:.*?\n\n/, '');
+
+        const mailto = `mailto:abuse@telegram.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(cleanBody)}`;
+        window.open(mailto, '_blank');
+
+        // Log
+        const log = scamPanel.classList.contains('active') ? scamLog : fakeLog;
+        clearLog(log);
+        logMessage(log, '📧 Email client dibuka! Kirim laporan ke abuse@telegram.org', 'success');
+        logMessage(log, '📌 Jika tidak terbuka, copy manual dan kirim ke abuse@telegram.org', 'info');
+    }
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    generateScam();
+    generateFake();
+
+    console.log('🔥 REPORT SCAM TELEGRAM — AGAMNESIA');
+    console.log('📌 Format: @username → auto generate report');
+    console.log('📧 Email: abuse@telegram.org');
+</script>
+</body>
+</html>
